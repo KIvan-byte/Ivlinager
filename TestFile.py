@@ -9,7 +9,6 @@ from kivymd.uix.slider import MDSlider
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.card import MDCard
 from kivy.core.window import Window
-from kivy.core.clipboard import Clipboard
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
 from kivy.metrics import dp
