@@ -85,7 +85,7 @@ class MainAppScreen(Screen):
     def __init__(self, app, **kwargs):
         super().__init__(**kwargs)
         self.app = app
-        layout = MDBoxLayout(orientation='vertical', padding=dp(10), spacing=dp(10))
+        layout = MDBoxLayout(orientation='vertical', padding=dp(5), spacing=dp(5))
 
         # Creating screen manager for main functions
         self.sm = ScreenManager()
@@ -126,7 +126,7 @@ class GenerateScreen(Screen):
     def __init__(self, app, **kwargs):
         super().__init__(**kwargs)
         self.app = app
-        layout = MDBoxLayout(orientation='vertical', padding=dp(10), spacing=dp(10))
+        layout = MDBoxLayout(orientation='vertical', padding=dp(5), spacing=dp(5))
 
         self.password_input = MDTextField(hint_text="Сгенерированный пароль", readonly=True, mode="rectangle")
         self.strength_value = MDLabel(text="", halign="center")
@@ -173,7 +173,7 @@ class SavedScreen(Screen):
     def __init__(self, app, **kwargs):
         super().__init__(**kwargs)
         self.app = app
-        layout = MDBoxLayout(orientation="vertical", padding=dp(10), spacing=dp(10))
+        layout = MDBoxLayout(orientation="vertical", padding=dp(5), spacing=dp(5))
         self.search_input = MDTextField(hint_text="Поиск по названию сервиса", mode="rectangle")
         self.search_input.bind(on_text_validate=self.on_search_password)  # Search on Enter
         search_button = MDRaisedButton(text="Поиск", md_bg_color=self.app.theme_cls.primary_color)
@@ -201,7 +201,7 @@ class CheckScreen(Screen):
     def __init__(self, app, **kwargs):
         super().__init__(**kwargs)
         self.app = app
-        layout = MDBoxLayout(orientation='vertical', padding=dp(10), spacing=dp(10))
+        layout = MDBoxLayout(orientation='vertical', padding=dp(5), spacing=dp(5))
         self.check_password_input = MDTextField(hint_text="Введите пароль для проверки", password=True,
                                                 mode="rectangle")
         self.check_password_input.bind(
