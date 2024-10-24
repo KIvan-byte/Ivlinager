@@ -15,10 +15,9 @@ import os
 import base64
 from cryptography.fernet import Fernet, InvalidToken
 from hashlib import sha256, pbkdf2_hmac
-from kivy.core.clipboard import Clipboard
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.card import MDCard
-from kivy.clock import Clock  # For scheduling updates
+from kivy.core.window import Window
 from kivy.core.clipboard import Clipboard
 
 
@@ -27,6 +26,9 @@ password_file = "passwords.ivli"
 master_password_file = "master_password.json"  # File to store the hashed master password
 rockyou_path = "rockyou.txt"  # Place rockyou.txt in the same directory
 rockyou_passwords = set()
+
+Window.size = (720, 1280)  # Фиксированный размер окна
+Window.resizable = False  # Отключение возможности изменения размера
 
 # Load rockyou.txt for password leak checks
 def load_rockyou():
@@ -148,7 +150,7 @@ class GenerateScreen(Screen):
         generate_button = MDRaisedButton(text="Сгенерировать пароль", md_bg_color=self.app.theme_cls.primary_color)
         generate_button.bind(on_press=self.on_generate_password)
 
-        widgets = [self.password_input, self.strength_value, self.leak_check_value, self.length_slider,
+        widgets = [self.password_input, self.length_slider,
                    self.service_input, self.email_input, save_button, generate_button]
         for widget in widgets:
             layout.add_widget(widget)
