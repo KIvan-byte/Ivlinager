@@ -27,7 +27,7 @@ master_password_file = "master_password.json"  # File to store the hashed master
 rockyou_path = "rockyou.txt"  # Place rockyou.txt in the same directory
 rockyou_passwords = set()
 
-Window.size = (720, 1280)  # Фиксированный размер окна
+Window.size = (600, 600)  # Фиксированный размер окна
 Window.resizable = False  # Отключение возможности изменения размера
 
 # Load rockyou.txt for password leak checks
