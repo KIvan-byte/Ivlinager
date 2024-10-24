@@ -19,6 +19,7 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.card import MDCard
 from kivy.core.window import Window
 from kivy.core.clipboard import Clipboard
+from kivymd.uix.button import MDIconButton
 
 
 
@@ -213,17 +214,18 @@ class SavedScreen(Screen):
                     service, email, password = parts
                     self.add_password_entry(service, email, password)
                 else:
-                    # Optionally log or handle the case where the line is invalid
                     print(f"Skipping invalid line: {line}")
 
     def add_password_entry(self, service, email, password):
         card = MDCard(size_hint_y=None, height=dp(80))
         card_box = MDBoxLayout(orientation='horizontal', padding=dp(10), spacing=dp(10))
 
-        password_label = MDLabel(text="*" * len(password), halign="left", theme_text_color="Custom", text_color=(1, 1, 1, 1))
+        password_label = MDLabel(text="*" * len(password), halign="left", theme_text_color="Custom",
+                                 text_color=(1, 1, 1, 1))
         email_label = MDLabel(text=email, halign="left", theme_text_color="Custom", text_color=(1, 1, 1, 1))
 
-        eye_icon = MDRaisedButton(text="👁️", size_hint_x=None, width=dp(30))
+        # Use MDIconButton with transparency
+        eye_icon = MDIconButton(icon="eye-outline", size_hint_x=None, width=dp(30), md_bg_color=(0, 0, 0, 0))
         eye_icon.bind(on_press=lambda x: self.toggle_password_visibility(password_label, password, eye_icon))
 
         # Bind right-click action
@@ -236,6 +238,14 @@ class SavedScreen(Screen):
 
         card.add_widget(card_box)
         self.passwords_layout.add_widget(card)
+
+    def toggle_password_visibility(self, password_label, password, eye_icon):
+        if password_label.text == "*" * len(password):
+            password_label.text = password  # Show password
+            eye_icon.icon = "eye-off-outline"  # Change eye icon to closed
+        else:
+            password_label.text = "*" * len(password)  # Hide password
+            eye_icon.icon = "eye-outline"  # Change eye icon to open
 
     def show_context_menu(self, touch, service, email, password):
         if touch.button == 'right':  # Check for right mouse button
@@ -262,19 +272,12 @@ class SavedScreen(Screen):
     def copy_to_clipboard(self, text):
         Clipboard.copy(text)  # Use the clipboard module to copy the text
 
-    def toggle_password_visibility(self, password_label, password, eye_icon):
-        if password_label.text == "*" * len(password):
-            password_label.text = password  # Show password
-            eye_icon.text = "🙈"  # Change eye icon to closed
-        else:
-            password_label.text = "*" * len(password)  # Hide password
-            eye_icon.text = "👁️"  # Change eye icon to open
-
     def on_search_password(self, instance=None):
         service_name = self.search_input.text
         if service_name:
             self.app.search_password_by_service(service_name)
             self.populate_passwords()
+
 
 class CheckScreen(Screen):
     def __init__(self, app, **kwargs):
