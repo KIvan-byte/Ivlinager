@@ -7,19 +7,22 @@ from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.scrollview import MDScrollView
 from kivymd.uix.slider import MDSlider
 from kivymd.uix.dialog import MDDialog
-from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
-from kivy.metrics import dp
-import random
-import string
-import os
-import base64
-from cryptography.fernet import Fernet, InvalidToken
-from hashlib import sha256, pbkdf2_hmac
-from kivymd.uix.dialog import MDDialog
 from kivymd.uix.card import MDCard
 from kivy.core.window import Window
 from kivy.core.clipboard import Clipboard
 from kivymd.uix.button import MDIconButton
+from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
+from kivy.metrics import dp
+from kivy.core.clipboard import Clipboard
+
+import random
+import string
+import os
+
+import base64
+from cryptography.fernet import Fernet, InvalidToken
+from hashlib import sha256, pbkdf2_hmac
+
 
 
 
